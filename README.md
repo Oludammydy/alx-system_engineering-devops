@@ -10,7 +10,9 @@ The specific list of projects contained follows:
 * [0x04. Loops, conditions and parsing](./0x04-loops_conditions_and_parsing)
 * [0x05. Processes and signals](./0x05-processes_and_signals)
 * [0x06. Regular_expressions](./0x06-regular_expressions)
-
+* [0x07. Networking_basics](./0x07-networking_basics)
+* [0x08. Networking_basics_2](./0x08-networking_basics_2)
+* [0x09. Web_infrastructure_design](./0x09-web_infrastructure_design)
 
 ## Author :black_nib:
 
