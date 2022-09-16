@@ -1,4 +1,4 @@
-Using Puppet to create a file in /tmp
+# Using Puppet to create a file in /tmp
 
 file { '/tmp/school':
   path    => '/tmp/school',
