@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Configuring SSH configuration file, so that I can connect to a server without typing a password.
+SendEnv LANG LC_*
+HashKnownHosts yes
+GSSAPIAuthentication yes
+GSSAPIDelegateCredentials no
+IdentityFile ~/.ssh/school
+PasswordAuthentication no
