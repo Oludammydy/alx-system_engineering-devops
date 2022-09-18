@@ -1,6 +1,6 @@
 # 0x0B-ssh
 
-Project done during **Full Stack Software Engineering studies** at **ALX SE School**. It's aim is to learn about What is a server, <br>Where servers usually live, <br>What is a SSH, <br>How to create an SSH RSA key pair, <br>How to connect to a remote host using SSH RSA Key pair and <br> The advantage of using #!/usr/bin/env bash instead of /bin/bash.
+Project done during **Full Stack Software Engineering studies** at **ALX SE School**. It's aim is to learn about the following; <br>What is a server, <br>Where servers usually live, <br>What is a SSH, <br>How to create an SSH RSA key pair, <br>How to connect to a remote host using SSH RSA Key pair and <br> The advantage of using #!/usr/bin/env bash instead of /bin/bash.
 
 
 
