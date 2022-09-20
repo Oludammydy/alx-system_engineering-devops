@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 # Script that installs Nginx server, redirects /redirect_me and customizes 404 not found
-apt-get -y update
-apt-get -y install nginx
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
-sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/oludammydy permanent;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
-service nginx start
+# apt-get -y update
+# apt-get -y install nginx
+# echo "Hello World!" > /var/www/html/index.nginx-debian.html
+# echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+# sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/oludammydy permanent;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
+# service nginx start
+
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install nginx -y
+sudo service nginx start
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+new_string='server_name _;\n\n\trewrite \^\/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/'
+sudo sed -i "s/server_name _;\$/${new_string}" /etc/nginx/sites-available/default
+sudo sed -i "s/^\t\}$/\t\}\n\n\terror_page 404 \/404.html;/" /etc/nginx/sites-available/default
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+sudo service nginx restart
