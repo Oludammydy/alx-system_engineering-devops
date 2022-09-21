@@ -7,14 +7,50 @@
 # sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/oludammydy permanent;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
 # service nginx start
 
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install nginx -y
-sudo service nginx start
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-new_string='server_name _;\n\n\trewrite \^\/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/'
-sudo sed -i "s/server_name _;\$/${new_string}" /etc/nginx/sites-available/default
-sudo sed -i "s/^\t\}$/\t\}\n\n\terror_page 404 \/404.html;/" /etc/nginx/sites-available/default
-sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+# sudo apt update -y
+# sudo apt upgrade -y
+# sudo apt install nginx -y
+# sudo service nginx start
+# echo "Hello World!" > /var/www/html/index.nginx-debian.html
+# new_string='server_name _;\n\n\trewrite \^\/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/'
+# sudo sed -i "s/server_name _;\$/${new_string}" /etc/nginx/sites-available/default
+# sudo sed -i "s/^\t\}$/\t\}\n\n\terror_page 404 \/404.html;/" /etc/nginx/sites-available/default
+# sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+# echo "Ceci n'est pas une page" > /var/www/html/404.html
+# sudo service nginx restart
+
+sudo apt-get update
+sudo apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+chmod -R 755 /var/www
+echo 'Hello World' > /var/www/html/index.html
+
+new_config=\
+"server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+               root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+        error_page 404 /404.html;
+        location  /404.html {
+            internal;
+        }
+        
+        if (\$request_filename ~ redirect_me){
+            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        }
+}
+"
 echo "Ceci n'est pas une page" > /var/www/html/404.html
-sudo service nginx restart
+echo "$new_config" > /etc/nginx/sites-available/default
+
+if [ "$(pgrep nginx)" -le 0 ];
+then
+    service nginx start
+else
+    service nginx restart
+fi;
