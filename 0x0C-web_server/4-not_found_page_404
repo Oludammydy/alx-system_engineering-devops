@@ -29,12 +29,4 @@ echo "server {
         }
 }" > default
 sudo mv -f default /etc/nginx/sites-available/default
-echo "Ceci n'est pas une page" > /var/www/html/404.html
-echo "$new_config" > /etc/nginx/sites-available/default
-
-if [ "$(pgrep nginx)" -le 0 ];
-then
-    service nginx start
-else
-    service nginx restart
-fi;
+sudo service nginx restart
