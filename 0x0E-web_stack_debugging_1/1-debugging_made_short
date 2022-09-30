@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bash Script must be 5 lines long/less & Cannot use ; && wget.
+# Configures an Nginx server to listen on port 80.
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
 kill "$(pgrep 'nginx' | head -1)"
