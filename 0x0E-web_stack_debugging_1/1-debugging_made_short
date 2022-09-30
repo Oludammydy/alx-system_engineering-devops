@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Bash Script must be 5 lines long/less & Cannot use ; && wget.
-sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo service nginx restart
-kill -9 "$(cat /var/run/nginx.pid)"
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+kill "$(pgrep 'nginx' | head -1)"
