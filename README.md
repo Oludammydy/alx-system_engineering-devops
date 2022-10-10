@@ -27,4 +27,4 @@ All work contained in this project was completed as part of the curriculum for A
    src="https://www.alxafrica.com/wp-content/uploads/2022/01/header-logo.png"
        alt="ALX Africa Logo"
   >
-</p>
+</p># 0x11-what_happens_when_your_type_google_com_in_your_browser_and_press_enter
